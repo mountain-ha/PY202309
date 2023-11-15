@@ -1,28 +1,32 @@
     
-class  Student():
-    [name, korean, math, english] = [" ", 0, 0, 0]
-    def  get_average(self,name):
-        get_sum = self.korean + self. math + self.english
-        average = get_sum / len(self,scores)
-        return average
+class  Student(): #학생 이름과 성적 클래스 생성
+    name = ""
+    korean = 0
+    math = 0
+    eng = 0
+    def  get_average(self): #성적 평균을 구하는 함수
+        return (self.korean+self.math+self.eng)/3
+    
+def load_data(file_name):
+    fp = open(file_name, "r", encoding="utf8")
+    lines = fp.readlines()
 
-fp = open("student.csv", "r", encoding="utf8")
-lines = fp.readlines()
-fp.close()
-
-# TODO 1: 학생 정보를 딕셔너리에 저장
-students = {}
-for line in lines[1:]:
-    student_data = Student()
-    student_data.name
-    student_data.korean
-    student_data.math
-    student_data.english
+    student_list = []
+    for line in lines[1:]:
+        tokens = line.replace("\n","").split(",")
+        std_ins = Student()
+        std_ins.name = tokens[0]
+        std_ins.korean = float(tokens[1])
+        std_ins.math = float(tokens[2])
+        std_ins.eng = float(tokens[3])
+        student_list.append(std_ins)
+    return student_list
 
 
 # TODO 2: 각 학생별 평균 점수 계산
 # getAverage()를 사용하여 평균 계산
-print("----학생들의 평균 점수----")
-for name, scores in students.items():
-    average_score = getAverage(scores)
-    print(f"{name}의 평균 점수는 {average}입니다")
+student_list = load_data("student.csv")
+for student_ins in student_list:
+    print(f"{student_ins.name}의 평균점수 {student_ins.get_average()}")
+
+
