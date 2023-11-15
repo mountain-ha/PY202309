@@ -10,6 +10,7 @@ class  Student(): #학생 이름과 성적 클래스 생성
 def load_data(file_name):
     fp = open(file_name, "r", encoding="utf8")
     lines = fp.readlines()
+    fp.close()
 
     student_list = []
     for line in lines[1:]:
